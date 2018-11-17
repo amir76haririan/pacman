@@ -169,6 +169,21 @@ def depthFirstSearch(problem):
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
+
+    node = Node(problem.getStartState())
+    if problem.isGoalState(problem.getStartState()): return node.solution()
+    frontier = util.Queue()
+    frontier.push(node)
+    explored = set()
+    while not frontier.isEmpty():
+        node = frontier.pop()
+        if problem.isGoalState(node.state): return node.solution()
+        explored.add(node.state)
+        for child in node.expand(problem):
+            if (child.state not in explored) and (child not in frontier.list):
+                frontier.push(child)
+    return []
+
     util.raiseNotDefined()
 
 def uniformCostSearch(problem):
