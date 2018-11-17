@@ -189,7 +189,7 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     util.raiseNotDefined()
 
 
-class Node:
+
 
 
 
