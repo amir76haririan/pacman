@@ -195,6 +195,13 @@ def uniformCostSearch(problem):
     frontier = util.PriorityQueue()
     frontier.update(node, node.path_cost)
     explored = set()
+    while not frontier.isEmpty():
+        node = frontier.pop()
+        if problem.isGoalState(node.state): return node.solution()
+        explored.add(node.state)
+        for child in node.expand(problem):
+            if (child.state not in explored) and (child not in frontier.heap):
+                frontier.update(child, child.path_cost)
 
     util.raiseNotDefined()
 
